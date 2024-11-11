@@ -58,4 +58,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     //SplashScreen
     implementation(libs.androidx.core.splashscreen)
+    //Modules
+    implementation(projects.presentation)
 }
