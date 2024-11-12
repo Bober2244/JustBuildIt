@@ -18,6 +18,7 @@ import dev.bober.presentation.ui.core.CustomerItem
 @Composable
 fun HomeScreen(
     data: MutableList<Order>,
+    onItemClick: (order: Order) -> Unit,
     //viewModel: HomeViewModel = koinViewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -35,7 +36,7 @@ fun HomeScreen(
             items(data) { model ->
                 CustomerItem(
                     order = model,
-                    onClick = {/* TODO("сделать анимацию перехода") */}
+                    onClick = { onItemClick(model) }
                 )
             }
         }
@@ -46,15 +47,15 @@ fun HomeScreen(
 @Composable
 private fun HomeScreenPreview() {
     HomeScreen(
-        mutableListOf(
+        data = mutableListOf(
             Order(
                 customer = "Арутюнян С. В.",
                 email = "fwbhkfewfb@gmail.com",
                 birthday = "20.08.2004",
                 phone = "",
-                startDate = "",
-                endDate = "",
+                buildings = listOf(),
             )
-        )
+        ),
+        onItemClick = {},
     )
 }

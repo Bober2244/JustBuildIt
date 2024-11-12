@@ -67,8 +67,7 @@ private fun CustomerItemPreview() {
             email = "fwbhkfewfb@gmail.com",
             birthday = "20.08.2004",
             phone = "",
-            endDate = "",
-            startDate = "",
+            buildings = listOf(),
         ),
         onClick = {}
     )

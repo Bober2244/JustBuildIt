@@ -60,4 +60,6 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     //Modules
     implementation(projects.presentation)
+    //Navigation
+    implementation(libs.androidx.navigation.compose)
 }
