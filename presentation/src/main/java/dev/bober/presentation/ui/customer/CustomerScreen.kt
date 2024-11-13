@@ -1,6 +1,7 @@
 package dev.bober.presentation.ui.customer
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -9,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults.cardElevation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -35,9 +37,9 @@ fun CustomerScreen(
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
             )
-            Spacer(modifier = Modifier.size(6.dp))
-            Text(text = order.birthday)
+            Spacer(modifier = Modifier.size(8.dp))
             Text(text = order.email)
+            Text(text = order.birthday)
             Spacer(modifier.size(20.dp))
             Text(
                 text = "Заявки",
@@ -47,18 +49,29 @@ fun CustomerScreen(
         }
         items(order.buildings) { building ->
             Card(
+                colors = CardColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.background,
+                    disabledContainerColor = MaterialTheme.colorScheme.onBackground,
+                    disabledContentColor = MaterialTheme.colorScheme.onPrimary
+                ),
                 shape = RoundedCornerShape(8.dp),
                 elevation = cardElevation(
                     defaultElevation = 2.dp,
                     draggedElevation = 8.dp,
                     pressedElevation = 0.dp,
                 ),
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+                border = BorderStroke(2.dp, MaterialTheme.colorScheme.primary),
                 modifier = Modifier.padding(vertical = 4.dp)
             ) {
-                Text(text = "Заявка на строительство на ${building.constructionPeriod} дней")
-                Spacer(modifier = Modifier.size(4.dp))
-                Text(text = "Строительство с ${building.startDate} по ${building.endDate}")
+                Column(
+                    modifier = Modifier.padding(4.dp)
+                ) {
+                    Text(text = "Заявка на строительство на ${building.constructionPeriod} дней")
+                    Spacer(modifier = Modifier.size(4.dp))
+                    Text(text = "Строительство с ${building.startDate} по ${building.endDate}")
+                }
+
             }
         }
     }

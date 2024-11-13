@@ -1,7 +1,9 @@
-package dev.bober.presentation.ui.core
+package dev.bober.presentation.ui.search
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,7 +11,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Icon
@@ -32,12 +33,32 @@ import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.bober.presentation.R
+
+@Composable
+fun SearchScreen(
+    searchQuery: String,
+    onBackClick: () -> Unit,
+    onSearchQueryChanged: (String) -> Unit,
+    onSearchTriggered: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.fillMaxSize()
+    ) {
+        SearchToolbar(
+            searchQuery = searchQuery,
+            onSearchQueryChanged = onSearchQueryChanged,
+            onSearchTriggered = onSearchTriggered,
+            onBackClick = onBackClick,
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
 
 @Composable
 fun SearchToolbar(
@@ -125,8 +146,7 @@ private fun SearchTextField(
                 } else {
                     false
                 }
-            }
-            .testTag("searchTextField"),
+            },
         shape = RoundedCornerShape(32.dp),
         value = searchQuery,
         keyboardOptions = KeyboardOptions(
@@ -143,6 +163,17 @@ private fun SearchTextField(
     LaunchedEffect(Unit) {
         focusRequester.requestFocus()
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun SearchScreenPreview() {
+    SearchScreen(
+        searchQuery = "",
+        onSearchQueryChanged = {},
+        onBackClick = {},
+        onSearchTriggered = {},
+    )
 }
 
 @SuppressLint("UnrememberedMutableState")

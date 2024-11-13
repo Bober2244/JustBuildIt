@@ -32,8 +32,9 @@ import dev.bober.presentation.R
 
 @Composable
 fun LoginScreen(
+    onLoginSuccess: () -> Unit,
+    //viewModel: LoginViewModel = koinViewModel(),
     modifier: Modifier = Modifier,
-    //TODO(viewModel: LoginViewModel = koinViewModel(),)
 ) {
 
     var login by rememberSaveable { mutableStateOf("") }
@@ -99,6 +100,7 @@ fun LoginScreen(
         ElevatedButton(
             onClick = {
                 //TODO()
+                onLoginSuccess()
             },
             modifier = Modifier.padding(top = 8.dp)
         ) {
@@ -111,5 +113,7 @@ fun LoginScreen(
 @Preview(showBackground = true)
 @Composable
 private fun LoginScreenPreview() {
-    LoginScreen()
+    LoginScreen(
+        onLoginSuccess = {},
+    )
 }

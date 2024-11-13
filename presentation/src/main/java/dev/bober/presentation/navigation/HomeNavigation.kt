@@ -56,7 +56,7 @@ fun NavGraphBuilder.homeGraph(navController: NavController) {
 private val data = mutableListOf(
     Order(
         customer = "Арутюнян С. В.",
-        email = "sartwe204@amil.com",
+        email = "sartwe204@gmail.com",
         birthday = "31.08.2004",
         phone = "",
         buildings = listOf(
